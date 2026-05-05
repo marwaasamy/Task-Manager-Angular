@@ -1,0 +1,76 @@
+<form class="mx-auto w-75">
+    <br>
+  <div class="container py-4 border">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">Add New Task</h5>
+        </div>
+      </div>
+    <div class="card-body p-4">
+        <div class="mb-3">
+        <label for="title" class="form-label">Task Title: </label>
+        <input id="title" type="text" placeholder="title" class="form-control" [(ngModel)]="newTask.title" name="title">
+        </div>
+
+        <div class="mb-3">
+          <label for="desc" class="form-label"> Description: </label>
+          <textarea id="desc" placeholder="Description"
+          [(ngModel)]="newTask.desc"
+          name="desc"
+          class="form-control"
+          rows="4"></textarea>
+        </div>
+
+        <div class="mb-3">
+        <label class="form-label fw-bold d-block mb-2">Priority: </label>  
+
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="priority" value="Low" id="Low" [(ngModel)]="newTask.priority" /> 
+        <label for="Low" class="form-check-label">Low</label>
+        </div>
+        
+
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="priority" value="Medium" id="Medium" [(ngModel)]="newTask.priority"/>
+        <label for="Medium" class="form-check-label"> Medium</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="priority" value="High" id="High" [(ngModel)]="newTask.priority"/>
+        <label for="High" class="form-check-label"> High</label>
+        </div>
+      
+        </div>
+
+
+        <div class="mb-3">
+        <label for="date" class="form-label">Date: </label>
+        <input id="date" type="date" [(ngModel)]="newTask.date" name="date" class="form-control">
+        </div>
+
+        <div class="mb-3">
+        <label class="form-label my-1 mr-2">category: </label>
+        <select  [(ngModel)]="newTask.category" class="form-select" name="category">
+        <option value="" disabled selected>Select category</option>
+        <option value="Work"> Work</option>
+        <option value="Personal"> Personal</option>
+        <option value="Study"> Study</option>
+        </select>
+        </div>
+
+        <!-- <div class="mb-3">
+        <label class="form-label my-1 mr-2">State: </label>
+        <select  [(ngModel)]="newTask.state" class="form-select" name="state">
+        <option value="" disabled selected>Select State</option>
+        <option value="Done"> Done</option>
+        <option value="NotDone"> Not Done</option>
+        </select>
+        </div> -->
+
+
+      <input class="btn btn-primary" type="submit" value="Add Task" (click)="addTask()">
+  </div>
+</div>
+</form>
+
+

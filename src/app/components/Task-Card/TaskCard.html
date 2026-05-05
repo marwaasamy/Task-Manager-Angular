@@ -1,0 +1,103 @@
+
+<div class="card mx-auto w-75 shadow-sm mt-4">
+
+@if(!Edit){
+
+<div class="card-body">
+
+  <h5 class="card-title"><strong>Title:</strong> {{task.title}}</h5>
+
+  <p><strong>Description:</strong> {{task.desc}}</p>
+
+  <ul class="list-group mb-3">
+    <li class="list-group-item">
+      <strong>Priority:</strong> {{task.priority}}
+    </li>
+
+    <li class="list-group-item">
+      <strong>Date:</strong> {{task.date}}
+    </li>
+
+    <li class="list-group-item">
+      <strong>Category:</strong> {{task.category}}
+    </li>
+
+    <li class="list-group-item">
+      <strong>State:</strong> {{task.state}}
+    </li>
+  </ul>
+
+  <div class="d-flex gap-2">
+
+    <button class="btn btn-success"
+            (click)="update()">
+      Update
+    </button>
+
+    <button class="btn btn-warning text-white"
+            [hidden]="task.state==='Done'"
+            (click)="done()">
+      Done
+    </button>
+
+    <button class="btn btn-danger"
+            (click)="Delete()">
+      Delete
+    </button>
+
+  </div>
+
+</div>
+
+}
+
+@else {
+
+<div class="card-body">
+
+  <input class="form-control mb-2"
+         [(ngModel)]="editTask.title"
+         placeholder="Title">
+
+  <textarea class="form-control mb-2"
+            rows="3"
+            [(ngModel)]="editTask.desc"
+            placeholder="Description"></textarea>
+
+  <select class="form-select mb-2"
+          [(ngModel)]="editTask.priority">
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+  </select>
+
+  <input type="date"
+         class="form-control mb-2"
+         [(ngModel)]="editTask.date">
+
+  <select class="form-select mb-2"
+          [(ngModel)]="editTask.category">
+    <option>Work</option>
+    <option>Study</option>
+    <option>Personal</option>
+  </select>
+
+  <div class="d-flex gap-2">
+
+    <button class="btn btn-primary"
+            (click)="save()">
+      Save
+    </button>
+
+    <button class="btn btn-secondary"
+            (click)="cancel()">
+      Cancel
+    </button>
+
+  </div>
+
+</div>
+
+}
+
+</div>

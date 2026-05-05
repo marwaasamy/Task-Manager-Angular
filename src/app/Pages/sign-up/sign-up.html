@@ -1,0 +1,136 @@
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center bg-light">
+
+  <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5" style="width: 100%; max-width: 550px;">
+
+    <div class="text-center mb-4">
+      <h2 class="fw-bold mb-1">Create Account</h2>
+    </div>
+
+    <form [formGroup]="formGroup" (ngSubmit)="handleSubmit()">
+
+      <div class="mb-4">
+        <label for="username" class="form-label fw-semibold">Username</label>
+        <input
+          formControlName="username"
+          type="text"
+          class="form-control form-control-lg rounded-3"
+          id="username"
+          placeholder="Enter username"
+        />
+
+        @if (formGroup.controls.username.errors?.['required'] &&
+        formGroup.controls.username.touched){
+        <small class="text-danger">Username is required</small>
+        }
+
+        @if(formGroup.get('username')?.errors?.['minlength'] &&
+        formGroup.get('username')?.dirty){
+        <small class="text-danger d-block">Minimum 3 characters</small>
+        }
+
+        @if(formGroup.get('username')?.errors?.['maxlength'] &&
+        formGroup.get('username')?.dirty){
+        <small class="text-danger d-block">Maximum 10 characters</small>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label for="email" class="form-label fw-semibold">Email Address</label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control form-control-lg rounded-3"
+          id="email"
+          placeholder="name@example.com"
+        />
+
+        @if(formGroup.get('email')?.errors?.['required'] &&
+        formGroup.get('email')?.touched){
+        <small class="text-danger">Email is required</small>
+        }
+
+        @if(formGroup.get('email')?.errors?.['email'] &&
+        formGroup.get('email')?.dirty){
+        <small class="text-danger d-block">Invalid email address</small>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="form-label fw-semibold">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control form-control-lg rounded-3"
+          id="password"
+          placeholder="Enter password"
+        />
+
+        @if(formGroup.get('password')?.errors?.['required'] &&
+        formGroup.get('password')?.touched){
+        <small class="text-danger">Password is required</small>
+        }
+
+        @if(formGroup.get('password')?.errors?.['pattern'] &&
+        formGroup.get('password')?.dirty){
+        <small class="text-danger d-block">
+          Must contain uppercase, lowercase, number & symbol
+        </small>
+        }
+
+        @if(formGroup.get('password')?.errors?.['minlength'] &&
+        formGroup.get('password')?.dirty){
+        <small class="text-danger d-block">Minimum 8 characters</small>
+        }
+
+        @if(formGroup.get('password')?.errors?.['maxlength'] &&
+        formGroup.get('password')?.dirty){
+        <small class="text-danger d-block">Maximum 20 characters</small>
+        }
+      </div>
+
+      <div class="mb-4">
+        <label for="confirmpassword" class="form-label fw-semibold">
+          Confirm Password
+        </label>
+
+        <input
+          formControlName="confirmPassword"
+          type="password"
+          class="form-control form-control-lg rounded-3"
+          id="confirmpassword"
+          placeholder="Confirm password"
+        />
+
+        @if(formGroup.get('confirmPassword')?.errors?.['required'] &&
+        formGroup.get('confirmPassword')?.touched){
+        <small class="text-danger">Confirm password is required</small>
+        }
+
+        @if(formGroup.get('confirmPassword')?.errors?.['minlength'] &&
+        formGroup.get('confirmPassword')?.dirty){
+        <small class="text-danger d-block">Minimum 8 characters</small>
+        }
+
+        @if(formGroup.get('confirmPassword')?.errors?.['maxlength'] &&
+        formGroup.get('confirmPassword')?.dirty){
+        <small class="text-danger d-block">Maximum 20 characters</small>
+        }
+      </div>
+
+      @if(formGroup.errors?.['match']===false){
+       <small class="text-danger d-block">
+        Password and Confirm Password do not match
+       </small>
+      }
+
+      <button
+        [disabled]="formGroup.invalid"
+        type="submit"
+        class="btn btn-primary btn-lg w-100 rounded-3 fw-semibold"
+      >
+        Sign Up
+      </button>
+
+    </form>
+  </div>
+</div>

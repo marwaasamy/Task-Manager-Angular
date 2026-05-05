@@ -1,0 +1,48 @@
+<div class="mx-auto mt-5 w-75" >
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link" routerLink="all" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">All Tasks</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="done" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Done</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="not-done" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Not Done</a>
+  </li>
+</ul>
+<br>
+<div>
+<router-outlet></router-outlet>
+</div>
+</div>
+
+
+<!-- <div class="mx-auto mt-5 w-75" >
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="activeTab === 'all'" (click)="activeTab='all'">All Tasks</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="activeTab === 'done'" (click)="GetactiveTab('done')">Done</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [class.active]="activeTab === 'notdone'" (click)="GetactiveTab('notdone')">Not Done</a>
+  </li>
+</ul>
+<br>
+
+<div>
+@if(activeTab === 'all'){
+  <app-all-tasks [TasksFromList]="TasksFromParent" (doneClicked)="markDone($event)" (deleteClicked)="markDelete($event)"
+  (updateClicked)="Update($event)"/>
+}
+@else if(activeTab === 'done'){
+  <app-done [TasksFromList]="TasksDone" (deleteClicked)="markDelete($event)" (updateClicked)="Update($event)"/>
+}
+@else{
+  <app-not-done [TasksFromList]="TasksNotDone" (doneClicked)="markDone($event)" (deleteClicked)="markDelete($event)"
+  (updateClicked)="Update($event)"/>
+}
+</div>
+</div> -->
+

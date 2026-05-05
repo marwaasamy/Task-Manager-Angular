@@ -1,0 +1,22 @@
+.slide{
+    margin: auto;
+    text-align: center;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: gray;
+  cursor: pointer;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.dot.active {
+  background-color: black; 
+}
