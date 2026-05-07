@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { TaskCard } from "../Task-Card/TaskCard";
 import { Task } from '../../types';
+import { TaskService } from '../../services/task-service';
 
 @Component({
   selector: 'app-not-done',
@@ -8,28 +9,13 @@ import { Task } from '../../types';
   templateUrl: './not-done.html',
   styleUrl: './not-done.css',
 })
-export class NotDone implements OnChanges{
-  @Input() TasksFromList:Task[]=[];
+export class NotDone{
 
-  @Output() doneClicked=new EventEmitter();
-  @Output() deleteClicked=new EventEmitter();
-  @Output() updateClicked=new EventEmitter();
+   taskService = inject(TaskService);
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // if(changes['TasksFromList'].firstChange) return;
-      console.log('from not done',this.TasksFromList);
-  }
-
-  done(id:string){
-   this.doneClicked.emit(id);
-  }
-
-  Delete(id:string){
-    this.deleteClicked.emit(id);
-  }
-
-   Update(data:Task){
-    this.updateClicked.emit(data);
-  }
+   ngOnInit() {
+      this.taskService.getTasks();
+      console.log(this.taskService.tasks());
+    }
 
 }

@@ -1,10 +1,11 @@
 <div class="tab-pane fade show active bg-body p-4">
-   @for(item of TasksFromList; track item.id){
+  @if(taskService.tasks()){
+   @for(item of taskService.tasks(); track item.id){
 
-<app-TaskCard
-  [task]="item" (doneClicked)="done($event)" (deleteClicked)="Delete($event)" (updateClicked)="Update($event)">
+<app-TaskCard [task]="item">
 </app-TaskCard>
 
+}
 }
 </div>
 

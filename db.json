@@ -1,17 +1,85 @@
 {
-    "tasks":[
-        {
-            "id":1,
-            "title":"task",
-            "desc":"no description",
-            "priority":"High",
-            "date":"2026-05-5",
-            "category":"Personal",
-            "state":"NotDone"
-        }
-
-    ],
-    "users":[
-        
-    ]
+  "tasks": [
+    {
+      "id": "1",
+      "title": "task",
+      "desc": "no description",
+      "priority": "High",
+      "date": "2026-05-12",
+      "category": "Personal",
+      "state": "NotDone"
+    },
+    {
+      "id": "1E81ZS7Ixk0",
+      "title": "task2",
+      "desc": "no desc",
+      "priority": "High",
+      "date": "2026-05-20",
+      "category": "Work",
+      "state": "NotDone"
+    },
+    {
+      "id": "d_rmGMIdXto",
+      "title": "task3",
+      "desc": "desc",
+      "priority": "Low",
+      "date": "2026-05-08",
+      "category": "Work",
+      "state": "Done"
+    },
+    {
+      "id": "dLhv3R1rfR8",
+      "title": "task4",
+      "desc": "desc",
+      "priority": "High",
+      "date": "2026-05-26",
+      "category": "Personal",
+      "state": "Done"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "email": "admin@gmail.com",
+      "password": "123@wertA"
+    },
+    {
+      "id": "4py-2RzqsOg",
+      "username": "admin1",
+      "email": "admin1@gmail.com",
+      "password": "Admin12@"
+    },
+    {
+      "id": "HgoBpKSUF-g",
+      "username": "admin2",
+      "email": "admin2@gmail.com",
+      "password": "Admin12@"
+    },
+    {
+      "id": "txQg9ZsF-E4",
+      "username": "admin3",
+      "email": "admin3@gmail.com",
+      "password": "Admin12@"
+    },
+    {
+      "id": "GomFr3jX2xo",
+      "username": "admin4",
+      "email": "admin4@gmail.com",
+      "password": "Admin12@"
+    },
+    {
+      "id": "uaczCc50Rp8",
+      "username": "admin5",
+      "email": "admin5@gmail.com",
+      "password": "Admin12@"
+    },
+    {
+      "id": "yORIM4q1qgA",
+      "username": "admin6",
+      "email": "admin6@gmail.com",
+      "password": "Admin12@"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

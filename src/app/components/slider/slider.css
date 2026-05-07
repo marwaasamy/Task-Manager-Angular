@@ -1,22 +1,9 @@
-.slide{
-    margin: auto;
-    text-align: center;
-}
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: gray;
-  cursor: pointer;
+.carousel {
+  max-width: 900px;
+  margin: 40px auto;
 }
 
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.dot.active {
-  background-color: black; 
+.carousel-inner {
+  border-radius: 16px;
+  overflow: hidden;
 }

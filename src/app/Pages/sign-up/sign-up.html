@@ -123,6 +123,10 @@
        </small>
       }
 
+       @if (emailExists) {
+    <div class="text-danger">This email is already registered!</div>
+      }
+
       <button
         [disabled]="formGroup.invalid"
         type="submit"

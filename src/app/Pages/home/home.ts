@@ -6,23 +6,12 @@ import { Task } from '../../types';
 
 @Component({
   selector: 'app-home',
-  imports: [Slider, TaskInput, TaskList],
+  imports: [Slider],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
-  task: Task = {
-        id:'',
-        title:'',
-        desc:'',
-        priority:'',
-        date:'',
-        category:'',
-        state:''
-      };
+
   
-    GetData(taskSent:Task){
-      this.task=taskSent;
-      console.log(this.task);
-    }
+   
 }

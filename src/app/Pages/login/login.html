@@ -66,6 +66,12 @@
         }
       </div>
 
+         @if (failed) {
+        <div class="text-danger">email or password is incorrect</div>
+      
+       }
+
+    
       <button
         [disabled]="form.invalid"
         type="submit"

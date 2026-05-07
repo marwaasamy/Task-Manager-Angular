@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, inject, Output } from "@angular/core";
 import { FormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
-import { Task } from "../../types";
+import { error, Task } from "../../types";
+import { TaskService } from "../../services/task-service";
 
 
 
@@ -16,6 +17,8 @@ export class TaskInput
 {
      tasks: Task[] = [];
 
+     taskService = inject(TaskService);
+
      @Output() SendTaskToApp = new EventEmitter();
 
     newTask: Task = {
@@ -28,12 +31,24 @@ export class TaskInput
     state:'NotDone'
   };
 
+    error: error = {
+    message: '',
+    state: false,
+  };
+
   addTask() {
     this.newTask.id=uuidv4().split('-')[1];
-    this.tasks.push(this.newTask);
-     console.log('Tasks Array:', this.tasks);
+    this.error.state=false;
+    for(let t in this.newTask){
+      let key = t as keyof Task;
+      if(this.newTask[key]===''){
+         this.error.state = true;
+        this.error.message = `please fill this field ${key}`;
+        return;
+      }
+    }
 
-    this.SendTaskToApp.emit(this.newTask);
+    this.taskService.addTask(this.newTask);
 
     this.newTask = {
       id:'',

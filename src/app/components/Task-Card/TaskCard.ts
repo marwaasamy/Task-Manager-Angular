@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, inject, Input, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Task } from "../../types";
+import { TaskService } from "../../services/task-service";
 
 @Component({
      templateUrl:'./TaskCard.html',
@@ -10,15 +11,14 @@ import { Task } from "../../types";
 })
 
 export class TaskCard{
-  @Input() task!: Task;
+  @Input() task!: Task; //stay
 
    editTask!: Task;
 
+   taskService=inject(TaskService);
+
   Edit:boolean=false;
 
-  @Output() doneClicked = new EventEmitter();
-  @Output() deleteClicked = new EventEmitter();
-  @Output() updateClicked = new EventEmitter();
 
   update(){
      this.Edit=true;
@@ -26,15 +26,16 @@ export class TaskCard{
   }
 
   done(){
-     this.task.state='Done';
-     this.doneClicked.emit(this.task.id);
+     //this.task.state='Done';
+     this.taskService.markDone(this.task.id);
   }
 
   Delete(){
-     this.deleteClicked.emit(this.task.id);
+    this.taskService.deleteTask(this.task.id);
   }
   save(){
-   this.updateClicked.emit(this.editTask);
+   this.taskService.updateTask(this.editTask);
+   console.log(this.editTask);
    this.Edit=false;
   }
 

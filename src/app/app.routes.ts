@@ -10,6 +10,7 @@ import { TaskList } from './components/TaskList/TaskList';
 import { AllTasks } from './components/all-tasks/all-tasks';
 import { Done } from './components/done/done';
 import { NotDone } from './components/not-done/not-done';
+import { authguardGuard } from './guards/authguard-guard';
 
 export const routes: Routes = [
      {
@@ -35,11 +36,13 @@ export const routes: Routes = [
       {
         title:'Add-task',
         path:'Add-task',
+        canActivate:[authguardGuard],
         component:TaskInput,
       },
       {
         title:'All-tasks',
         path:'All-tasks',
+        canActivate:[authguardGuard],
         component:TaskList,
          children: [
           { path: '', redirectTo: 'all', pathMatch: 'full' },

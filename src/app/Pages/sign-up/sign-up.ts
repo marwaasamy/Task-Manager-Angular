@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { User } from '../../types';
+import { UserService } from '../../services/user-service';
+import { v4 as uuidv4 } from 'uuid';
+import { Router } from '@angular/router';
+
 
 function match(form:AbstractControl):ValidationErrors | null{
   let password = form.get('password')?.value;
@@ -14,6 +19,11 @@ function match(form:AbstractControl):ValidationErrors | null{
   styleUrl: './sign-up.css',
 })
 export class SignUp {
+
+userService= inject(UserService);
+router = inject(Router);
+
+
   formGroup=new FormGroup({
     username : new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     email: new FormControl('',[Validators.required,Validators.email]),
@@ -23,8 +33,32 @@ export class SignUp {
     validators:match,
   });
 
+  emailExists = false;
 
-  handleSubmit(){
-    console.log(this.formGroup);
-  }
+  handleSubmit() {
+  if (this.formGroup.invalid) return;
+
+  const email =this.formGroup.get('email')?.value!;
+
+  this.userService.checkEmail(email).subscribe({
+  next: (users) => {
+    if (users.length > 0) {
+      this.emailExists = true;
+    } else {
+     this.emailExists = false;
+
+      const newUser: User = {
+        id: uuidv4().split('-')[1],
+        username: this.formGroup.get('username')?.value!,
+        email: this.formGroup.get('email')?.value!,
+        password: this.formGroup.get('password')?.value!,
+      };
+      this.userService.addUser(newUser);
+      this.router.navigate(['/login']);
+    }
+  },
+  
+  error: (e) => console.error(e)
+});
+}
 }

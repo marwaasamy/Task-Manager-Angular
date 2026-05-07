@@ -1,52 +1,30 @@
-<div class="container d-flex justify-content-center mt-5">
-  <div class="card shadow-lg p-4 text-center rounded-4" style="max-width: 500px; width: 100%;">
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
 
-    <div class="d-flex justify-content-center align-items-center gap-4">
-
-      <button class="btn btn-outline-primary rounded-circle" (click)="prev()">
-        <i class="bi bi-caret-left-fill"></i>
+  <div class="carousel-indicators">
+    @for(i of images; track i; let idx = $index){
+      <button 
+        type="button" 
+        data-bs-target="#myCarousel" 
+        [attr.data-bs-slide-to]="idx"
+        [class.active]="idx == index"
+        (click)="GetImage(idx)">
       </button>
-
-      <img 
-        [src]="currentImage" 
-        class="img-fluid rounded-4 border shadow-sm"
-        style="width: 250px; height: 250px; object-fit: cover;"
-      >
-
-      <button class="btn btn-outline-primary rounded-circle" (click)="next()">
-        <i class="bi bi-caret-right-fill"></i>
-      </button>
-
-    </div>
-
-    <!-- <div class="mt-4 d-flex justify-content-center gap-3">
-      <button class="btn btn-success px-4" (click)="slideShow()">Start</button>
-      <button class="btn btn-danger px-4" (click)="stop()">Stop</button>
-    </div> -->
-
-    <div class="mt-4 d-flex justify-content-center gap-2">
-      @for(i of images;track i; let idx = $index){
-        <span 
-          class="rounded-circle border border-primary"
-          [class.bg-primary]="idx==index"
-          (click)="GetImage(idx)"
-          style="width:14px; height:14px; cursor:pointer; display:inline-block;">
-        </span>
-      }
-    </div>
-
+    }
   </div>
+
+  <div class="carousel-inner rounded-4 shadow">
+    @for(i of images; track i; let idx = $index){
+      <div class="carousel-item" [class.active]="idx == index">
+        <img [src]="i" class="d-block w-100" style="height: 450px; object-fit: cover;">
+      </div>
+    }
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" (click)="prev()">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" (click)="next()">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+
 </div>
-
-
-<!-- <div class="slide">
-   <i class="bi bi-caret-left" (click)="prev()"></i> 
-   <img [src]="currentImage" width="200px" height="200px"> 
-   <i class="bi bi-caret-right" (click)="next()"></i> 
-   <button (click)="slideShow()">start</button> 
-   <button (click)="stop()">stop</button>
-    <div class="dots">
-       @for(i of images;track i; let idx = $index)
-       { <span class="dot" [class.active]="idx==index" (click)="GetImage(idx)"></span> }
-       </div>
-       </div> -->
