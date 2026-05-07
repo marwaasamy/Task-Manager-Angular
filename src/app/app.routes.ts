@@ -11,6 +11,7 @@ import { AllTasks } from './components/all-tasks/all-tasks';
 import { Done } from './components/done/done';
 import { NotDone } from './components/not-done/not-done';
 import { authguardGuard } from './guards/authguard-guard';
+import { Notfound } from './Pages/notfound/notfound';
 
 export const routes: Routes = [
      {
@@ -64,5 +65,11 @@ export const routes: Routes = [
     path: 'signup',
     component: SignUp,
   },
+
+    {
+      path:"**",
+      title:'notfound',
+      component:Notfound
+    }
 
 ];
