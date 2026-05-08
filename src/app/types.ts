@@ -21,4 +21,10 @@ export type error = {
   state: boolean;
 };
 
+export interface notification{
+  message:string,
+  type:'success'|'error',
+  duration:number
+}
+
 export const baseURL: string = 'http://localhost:3000';

@@ -4,6 +4,7 @@ import { User } from '../../types';
 import { UserService } from '../../services/user-service';
 import { v4 as uuidv4 } from 'uuid';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification-service';
 
 
 function match(form:AbstractControl):ValidationErrors | null{
@@ -22,6 +23,7 @@ export class SignUp {
 
 userService= inject(UserService);
 router = inject(Router);
+notify=inject(NotificationService);
 
 
   formGroup=new FormGroup({
@@ -44,6 +46,11 @@ router = inject(Router);
   next: (users) => {
     if (users.length > 0) {
       this.emailExists = true;
+        this.notify.show(
+              'Email already exists',
+              'error'
+            )
+      
     } else {
      this.emailExists = false;
 

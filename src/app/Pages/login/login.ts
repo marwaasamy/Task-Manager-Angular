@@ -3,6 +3,7 @@ import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { email } from '@angular/forms/signals';
 import { UserService } from '../../services/user-service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../services/notification-service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
 export class Login {
  userService = inject(UserService);
  router = inject(Router);
+ notify=inject(NotificationService);
 
   emailExists = false;
   passwordExists = false;
@@ -38,10 +40,18 @@ export class Login {
           }
           else{
             this.failed=true;
+             this.notify.show(
+              'failed to login',
+              'error'
+            )
           }
         }
         else{
           this.failed=true;
+           this.notify.show(
+              'failed to login',
+              'error'
+            )
         }
       },
   

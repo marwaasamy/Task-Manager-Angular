@@ -1,6 +1,7 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { baseURL, Task } from '../types';
 import { HttpClient } from '@angular/common/http';
+import { NotificationService } from './notification-service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ export class TaskService {
   http=inject(HttpClient);
 
   tasks=signal<Task[]>([]);
+  notify=inject(NotificationService);
 
   doneTasks=computed(()=>this.tasks()?.filter(p=>p.state=="Done"));
 
@@ -24,8 +26,18 @@ export class TaskService {
     subscribe({
       next:(task)=>{
         this.tasks.update(tasks=>[...tasks,task]);
+        this.notify.show(
+          'Product added successfully',
+          'success'
+        )
       },
-        error: (e) => console.log(e)
+        error: (e) => {
+          console.log(e);
+           this.notify.show(
+          'Product failed to be added',
+          'error'
+        )
+        }
     });
   }
 
@@ -35,8 +47,20 @@ export class TaskService {
       next:(task)=>{
         console.log(task);
         this.tasks.update(tasks=>tasks.map((t)=>t.id===task.id?task:t));
+         this.notify.show(
+          'Product updated successfully',
+          'success'
+        )
       },
-        error: (e) => console.log(e)
+        error: (e) =>{
+
+         console.log(e);
+           this.notify.show(
+          'Product failed to be updated',
+          'error'
+        )
+
+        }
     });
   }
 
@@ -45,8 +69,19 @@ export class TaskService {
      .subscribe({
       next:()=>{
         this.tasks.update(tasks=>tasks.filter((t)=>t.id!==id));
+         this.notify.show(
+          'Product deleted successfully',
+          'success'
+        )
       },
-        error: (e) => console.log(e)
+        error: (e) => 
+          {
+            console.log(e);
+              this.notify.show(
+          'Product failed to be deleted',
+          'error'
+        )
+          }
     });
   }
 
