@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 import { error, Task } from "../../types";
 import { TaskService } from "../../services/task-service";
+import { NotificationService } from "../../services/notification-service";
 
 
 
@@ -18,6 +19,7 @@ export class TaskInput
      tasks: Task[] = [];
 
      taskService = inject(TaskService);
+     notificationService=inject(NotificationService);
 
      @Output() SendTaskToApp = new EventEmitter();
 
@@ -44,6 +46,11 @@ export class TaskInput
       if(this.newTask[key]===''){
          this.error.state = true;
         this.error.message = `please fill this field ${key}`;
+        console.log(this.error);
+        this.notificationService.show(
+          'Please fill all fields',
+          'error'
+        )
         return;
       }
     }

@@ -4,8 +4,6 @@ import { Login } from './Pages/login/login';
 import { SignUp } from './Pages/sign-up/sign-up';
 import { Home } from './Pages/home/home';
 import { TaskInput } from './components/Task-Input/TaskInput';
-import { AddTask } from './Pages/add-task/add-task';
-import { Title } from '@angular/platform-browser';
 import { TaskList } from './components/TaskList/TaskList';
 import { AllTasks } from './components/all-tasks/all-tasks';
 import { Done } from './components/done/done';
