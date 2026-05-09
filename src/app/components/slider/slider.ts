@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-slider',
@@ -11,9 +11,11 @@ export class Slider {
   index:number =0;
   timer:number=0; 
   currentImage:string=this.images[0];
+  cd = inject(ChangeDetectorRef);
 
    ngOnInit(): void {
     this.timer = setInterval(()=>{
+    this.cd.detectChanges();
     this.index = (this.index + 1) % this.images.length;
     this.currentImage = this.images[this.index];
     },1000);
