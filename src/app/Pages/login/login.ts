@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { email } from '@angular/forms/signals';
 import { UserService } from '../../services/user-service';
@@ -15,6 +15,7 @@ export class Login {
  userService = inject(UserService);
  router = inject(Router);
  notify=inject(NotificationService);
+
 
   emailExists = false;
   passwordExists = false;
@@ -36,6 +37,7 @@ export class Login {
           if(users[0].password===password){
             this.passwordExists=true;
             localStorage.setItem("email",email);
+            this.userService.LoggedIn.set(true);
             this.router.navigate(['/layout/home']);
           }
           else{

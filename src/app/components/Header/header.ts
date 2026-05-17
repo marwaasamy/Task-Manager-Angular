@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { UserService } from "../../services/user-service";
 
 @Component({
     templateUrl:'./header.html',
@@ -8,4 +9,9 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
     imports: [RouterLink, RouterLinkActive],
 })
 
-export class header {}
+export class header {
+logout() {
+this.userService.logout();
+}
+    userService = inject(UserService);
+}

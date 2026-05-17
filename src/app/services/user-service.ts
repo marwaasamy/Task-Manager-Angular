@@ -7,6 +7,8 @@ import { baseURL, User } from '../types';
 })
 export class UserService {
   http=inject(HttpClient);
+   LoggedIn = signal<boolean|null>(false);
+
   //user=signal<User | null>(null);
 
 
@@ -24,6 +26,12 @@ export class UserService {
 
  checkEmail(email: string) {
   return this.http.get<User[]>(baseURL + '/users', { params: { email } });
+}
+
+logout(){
+  localStorage.removeItem('email');
+
+  this.LoggedIn.set(null);
 }
 
 }
